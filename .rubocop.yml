@@ -3,7 +3,6 @@ inherit_gem:
 
 require:
   - rubocop-rails
-  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.2.2
@@ -11,3 +10,4 @@ AllCops:
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
+    - 'spec/**/*'

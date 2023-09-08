@@ -61,13 +61,12 @@ group :development, :test do
   # binding.pry / debug tool
   gem "pry-rails"
   # Feature integration tests library
-  gem "capybara"
+  # gem "capybara"
   # Selenium webdriver
-  gem "selenium-webdriver"
+  # gem "selenium-webdriver"
   # Rubocop
   gem "rubocop-shopify", "~> 2.14", require: false
   gem "rubocop-rails", require: false
-  gem "rubocop-rspec", require: false
 end
 
 group :development do
