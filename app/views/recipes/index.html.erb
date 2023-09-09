@@ -1,0 +1,7 @@
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-5">
+  <div class="mx-auto max-w-2xl mt-5 flex items-center justify-center">
+    <ul id="recipes" role="list" class="divide-y divide-gray-200">
+    </ul>
+    <%= render 'shared/infinite_scroll_frame', resource: recipes_path, page: 1 %>
+  </div>
+</div>
