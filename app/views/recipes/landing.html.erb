@@ -1,0 +1,30 @@
+<section class="text-gray-600 body-font w-full">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-10">
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-yellow-500">Recipe Finder</h1>
+      <p class="w-2/3 mx-auto leading-relaxed text-lg">Your Culinary Journey Starts Here</p>
+    </div>
+    <div class="flex flex-wrap -m-4">
+      <div class="w-1/2 p-4">
+        <div class="bg-white rounded-lg border border-slate-300">
+          <%= image_tag("recipes.png", class: "h-96 rounded w-full object-cover object-center mb-3") %>
+          <div class="p-6 pt-3 text-center">
+            <h2 class="tracking-widest text-yellow-500 text-lg font-medium title-font">Search for recipes</h2>
+            <p class="pt-2 leading-relaxed text-base">Explore a wide range of recipes from around the world.<br>Find something new to try for dinner tonight.</p>
+            <%= link_to "Get Started", recipes_path, class: "inline-block text-center text-white bg-yellow-500 rounded text-lg w-1/2 px-8 py-2 mt-8" %>
+          </div>
+        </div>
+      </div>
+      <div class="w-1/2 p-4 b-1">
+        <div class="bg-white rounded-lg border border-slate-300">
+          <%= image_tag("ingredients.png", class: "h-96 rounded w-full object-cover object-center mb-3") %>
+          <div class="p-6 pt-3 text-center">
+            <h2 class="tracking-widest text-yellow-500 text-lg font-medium title-font">Check Your Ingredients</h2>
+            <p class="pt-2 leading-relaxed text-base">Wondering what to cook with the ingredients you have?<br>Let us suggest recipes based on what's in your fridge.</p>
+            <%= link_to "Get Started", check_ingredients_recipes_path, class: "inline-block text-center text-white bg-yellow-500 rounded text-lg w-1/2 px-8 py-2 mt-8" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
