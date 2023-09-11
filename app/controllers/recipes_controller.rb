@@ -3,6 +3,8 @@
 class RecipesController < ApplicationController
   include Paginable
 
+  before_action :set_ingredients, only: :check_ingredients
+
   def landing
   end
 
@@ -18,5 +20,11 @@ class RecipesController < ApplicationController
   end
 
   def check_ingredients
+  end
+
+  private
+
+  def set_ingredients
+    @ingredients = Ingredient.all
   end
 end

@@ -1,0 +1,5 @@
+<%= turbo_stream.update "ingredient_options" do %>
+  <% @ingredients.each do |ingredient| %>
+    <%= render "recipes/ingredient_option", ingredient: ingredient, checked: params[:ingredient_ids]&.include?(ingredient.id) %>
+  <% end %>
+<% end %>

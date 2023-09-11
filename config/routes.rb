@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   root "recipes#landing"
 
+  resources "ingredients", only: [:index]
   resources "recipes", only: [:index] do
-    collection do
-      post "search"
-      get "check_ingredients"
-    end
+    get "check_ingredients", on: :collection
   end
 end
