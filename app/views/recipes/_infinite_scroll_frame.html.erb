@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "infinite_scroll", 
+    src: recipes_path(query: query, page: page, format: :turbo_stream), 
+    loading: :lazy 
+%>

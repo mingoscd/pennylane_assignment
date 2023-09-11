@@ -2,10 +2,10 @@
  
 <% if @pagination.next.present? %>
   <%= turbo_stream.replace "infinite_scroll",
-    partial: "shared/infinite_scroll_frame",
+    partial: "recipes/infinite_scroll_frame",
     locals: { 
-      resource: recipes_path,
       page: @pagination.next,
+      query: params[:query],
     }
   %>
 <% end %>

@@ -1,0 +1,12 @@
+<div class="p-4 py-8 bg-gray-100">
+  <%= form_with(url: recipes_path, method: "GET", class: "w-full", data: { controller: "autosubmit" }) do |form| %>
+    <div class="flex justify-center">
+      <%= form.text_field :query, 
+          class: "relative m-0 block w-full flex-auto rounded border border-solid border-neutral-300 bg-white px-3 py-[0.25rem] text-gray-700",
+          value: params[:query],
+          placeholder: "Search for your recipe",
+          data: { action: "input->autosubmit#debouncedSubmit" }
+      %>
+    </div>
+  <% end %>
+</div>
