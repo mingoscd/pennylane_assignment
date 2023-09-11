@@ -8,16 +8,13 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = infinite_scroll_pagination(
-      Recipe.newest_by_ratings,
+      Recipe.search(params),
     )
 
     respond_to do |format|
       format.html
       format.turbo_stream
     end
-  end
-
-  def search
   end
 
   def check_ingredients
