@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ParseIngredients do
   before do
-    Ingredient.create!(name: 'sugar')
+    create(:ingredient, name: 'sugar')
   end
 
   describe '.call' do

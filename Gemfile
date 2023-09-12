@@ -61,6 +61,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   # Rspec testing
   gem "rspec-rails", "~> 6.0"
+  gem "factory_bot_rails"
   # binding.pry / debug tool
   gem "pry-rails"
   # Feature integration tests library
