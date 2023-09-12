@@ -15,6 +15,20 @@ class Recipe < ApplicationRecord
   scope :newest_by_ratings, -> { order(ratings: :desc, created_at: :desc) }
   scope :by_name, ->(query) { where("title ILIKE ?", "%#{query}%") }
 
+  # Filters recipes by ingredients based on the provided ingredient_ids.
+  # Retrieves recipes that include the specified ingredients.
+  # The result includes recipes with at least one matching ingredient, ordered by recipe ID.
+  #
+  # @param ingredient_ids [Array<Integer>] An array of ingredient IDs to filter recipes.
+  #
+  # @return [ActiveRecord::Relation] A collection of recipes that match the specified ingredients.
+  scope :by_ingredients, ->(ingredient_ids = []) do
+    joins(:ingredients)
+      .where(ingredients: { id: ingredient_ids })
+      .group("recipes.id")
+      .having("COUNT(DISTINCT recipe_ingredients.ingredient_id) = ?", ingredient_ids.size)
+  end
+
   class << self
     # Search for recipes based on specified parameters
     #

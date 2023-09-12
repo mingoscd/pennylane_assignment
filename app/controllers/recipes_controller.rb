@@ -20,6 +20,16 @@ class RecipesController < ApplicationController
   end
 
   def check_ingredients
+    if params[:ingredient_ids]&.any?
+      @recipes = infinite_scroll_pagination(
+        Recipe.by_ingredients(params[:ingredient_ids]),
+      )
+    end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   private
