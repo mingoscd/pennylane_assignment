@@ -1,9 +1,11 @@
 <%= turbo_stream.append "recipes", partial: "recipes/recipes", locals: { recipes: @recipes, check_matched_ingredients: true } %>
 
-<%= turbo_stream.replace "infinite_scroll",
-  partial: "recipes/infinite_scroll_frame",
-  locals: { 
-    page: 1,
-    ingredient_ids: (params[:ingredient_ids] || [])
-  }
-%>
+<% if @pagination.next.present? %>
+  <%= turbo_stream.replace "infinite_scroll",
+    partial: "recipes/infinite_scroll_frame",
+    locals: { 
+      page: @pagination.next,
+      ingredient_ids: (params[:ingredient_ids] || [])
+    }
+  %>
+<% end %>

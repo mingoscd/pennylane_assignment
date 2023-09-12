@@ -41,6 +41,7 @@ export default class extends Controller {
     this.optionTargets.forEach((e) => e.checked = false)
   }
 
+  // after update request, change the ingredient_ids checkbox to checked
   setupEventListener() {
     document.addEventListener("turbo:before-stream-render", (event) => {
       const turboStreamElement = event.target
