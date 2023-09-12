@@ -1,4 +1,4 @@
-<%= turbo_stream.append "recipes", partial: "recipes/recipes", locals: { recipes: @recipes } %>
+<%= turbo_stream.append "recipes", partial: "recipes/recipes", locals: { recipes: @recipes, check_matched_ingredients: false } %>
  
 <% if @pagination.next.present? %>
   <%= turbo_stream.replace "infinite_scroll",

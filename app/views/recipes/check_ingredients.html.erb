@@ -1,1 +1,16 @@
-<%= render 'recipes/searchable_dropdown', selected_ingredients: params[:ingredient_ids].to_a %>
+<%= render 'recipes/searchable_dropdown', selected_ingredients: (params[:ingredient_ids] || []) %>
+
+<div class="mx-auto w-full px-4 pt-5">
+  <div class="mx-auto mt-5">
+    <ul id="recipes" role="list" class="grid grid-cols-2 gap-4">
+      <%- if @recipes %>
+        <%= render "recipes/recipes", recipes: @recipes, check_matched_ingredients: true %>
+        <%- if @pagination&.next&.present? %>
+          <%= render 'recipes/infinite_scroll_frame', page: 1, ingredient_ids: (params[:ingredient_ids] || []) %>
+        <% end %>
+      <% else %>
+        Add ingredients to find recipes that match your fridge
+      <% end%>
+    </ul>
+  </div>
+</div>

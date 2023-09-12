@@ -8,7 +8,7 @@ export default class extends Controller {
     url: String,
     attribute: String
   }
-  static targets = ["search"]
+  static targets = ["option", "search", "reset"]
   
   connect() {
     this.selected = new Set()
@@ -34,10 +34,11 @@ export default class extends Controller {
     } else {
       this.selected.delete(ingredient)
     }
+  }
 
-    // Reset the dropdown
-    this.searchTarget.value = ''
-    this.change()
+  resetSelection() {
+    this.selected.clear()
+    this.optionTargets.forEach((e) => e.checked = false)
   }
 
   setupEventListener() {

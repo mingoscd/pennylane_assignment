@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "infinite_scroll", 
-    src: recipes_path(query: query, page: page, format: :turbo_stream), 
-    loading: :lazy 
-%>
+<%- src_path = recipes_path(query: query, page: page, format: :turbo_stream) if action_name == "index" %>
+<%- src_path = check_ingredients_recipes_path(ingredient_ids: ingredient_ids, page: page, format: :turbo_stream) if action_name == "check_ingredients" %>
+
+<%= turbo_frame_tag "infinite_scroll", src: src_path, loading: :lazy %>
