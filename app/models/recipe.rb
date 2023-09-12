@@ -17,20 +17,24 @@ class Recipe < ApplicationRecord
 
   # Filters recipes by ingredients based on the provided ingredient_ids.
   # Retrieves recipes that include the specified ingredients.
-  # The result includes recipes with at least one matching ingredient, ordered by recipe ID.
+  # The result includes recipes with at least one matching ingredient, ordered by matching percentage of ingredient_ids
   #
   # @param ingredient_ids [Array<Integer>] An array of ingredient IDs to filter recipes.
   #
   # @return [ActiveRecord::Relation] A collection of recipes that match the specified ingredients.
+  # rubocop:disable Layout/LineLength
   scope :by_ingredients, ->(ingredient_ids = []) do
     joins(:ingredients)
       .where(ingredients: { id: ingredient_ids })
       .group("recipes.id")
-      .having("COUNT(DISTINCT recipe_ingredients.ingredient_id) = ?", ingredient_ids.size)
+      .select("recipes.*, (COUNT(ingredients.id) * 100.0 / (SELECT COUNT(*) FROM recipe_ingredients WHERE recipe_ingredients.recipe_id = recipes.id)) AS matching_percentage")
+      .order("matching_percentage DESC")
   end
+  # rubocop:enable Layout/LineLength
 
   class << self
-    # Search for recipes based on specified parameters
+    # Search for recipes based on specified parameters. Can be extended easily adding new element to SEARCHABLE_ATTRS
+    # and adding a new statement in the filters loop.
     #
     # @param [Hash] params - A hash of search parameters, valid keys on SEARCHABLE_ATTRS constant
     #   :query [String] - A search query for recipe titles
