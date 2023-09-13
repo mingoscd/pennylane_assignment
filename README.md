@@ -66,3 +66,9 @@ Select the ingredients you have, and our algorithm will provide you with a list 
 Recipes are sorted by the percentage of ingredients that match, with 100% matches appearing at the top.
 Even if you don't have all the ingredients for a particular recipe, you can still find and explore new culinary possibilities.
 Like the Recipe Search, the Ingredient-based Recipe Filtering page also features infinite scroll pagination, ensuring you can explore a wide variety of recipe options.
+
+## Known issues
+
+- When searching for recipes based on ingredients, you may notice that recipe_ingredients with no associated ingredient_id are incorrectly marked as checked in the filters. This issue can be resolved by enhancing the ingredient list and improving the IngredientParser algorithm. Already detailed these improvements in the "Feature Optimizations" section.
+
+- There is a known issue with infinite scroll on both the Recipe Search and Recipe by Ingredients pages, where new records do not load in Chrome. This problem has not been observed on Safari or Firefox.
