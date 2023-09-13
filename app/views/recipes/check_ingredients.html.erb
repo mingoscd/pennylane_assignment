@@ -9,7 +9,7 @@
         Add ingredients to find recipes that match your fridge
       <% end%>
     </ul>
-    <%- if @pagination.next.present? %>
+    <%- if @pagination&.next.present? %>
       <%= render 'recipes/infinite_scroll_frame', page: 2, ingredient_ids: (params[:ingredient_ids] || []) %>
     <% end %>
   </div>
