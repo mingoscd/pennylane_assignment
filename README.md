@@ -1,4 +1,6 @@
-# USAGE
+# Recipe finder
+
+You can check the deployed version of this repo on [https://recipe-pennylane-assignment.fly.dev/](https://recipe-pennylane-assignment.fly.dev/)
 
 ## Importing initial data
 
