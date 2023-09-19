@@ -27,7 +27,10 @@ class Recipe < ApplicationRecord
     joins(:ingredients)
       .where(ingredients: { id: ingredient_ids })
       .group("recipes.id")
-      .select("recipes.*, (COUNT(ingredients.id) * 100.0 / (SELECT COUNT(*) FROM recipe_ingredients WHERE recipe_ingredients.recipe_id = recipes.id)) AS matching_percentage")
+      .select(
+        "recipes.*, " \
+        "(100.0 * SUM(CASE WHEN recipe_ingredients.ingredient_id IS NOT NULL THEN 1 ELSE 0 END) / (SELECT DISTINCT COUNT(*) FROM recipe_ingredients WHERE recipe_ingredients.recipe_id = recipes.id)) AS matching_percentage"
+      )
       .order("matching_percentage DESC")
   end
   # rubocop:enable Layout/LineLength
@@ -54,5 +57,9 @@ class Recipe < ApplicationRecord
 
       recipes
     end
+  end
+
+  def matching_percentage(ingredient_ids)
+    100.0 * (recipe_ingredients.map(&:ingredient_id) & ingredient_ids.map(&:to_i)).size / recipe_ingredients.size
   end
 end
